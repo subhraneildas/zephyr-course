@@ -1,5 +1,5 @@
 identifier: my_board
-name: My Board (Arduino Nano 33 BLE sense)
+name: My Board
 type: mcu
 arch: arm
 toolchain:

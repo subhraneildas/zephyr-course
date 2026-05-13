@@ -12,13 +12,24 @@
 / {
 	model = "My Board";
 	compatible = "neil,my_board";
-
+	chosen {
+		zephyr,flash = &flash0;
+		zephyr,sram = &sram0;
+		zephyr,console = &cdc_acm_uart0;
+		zephyr,shell-uart = &cdc_acm_uart0;
+	};
 	mic_pwr: mic_pwr {
 		compatible = "regulator-fixed";
 		regulator-name = "mic_pwr";
 		enable-gpios = <&gpio0 17 GPIO_ACTIVE_HIGH>;
 		regulator-boot-on;
 	};
+};
+
+&zephyr_udc0 {
+    cdc_acm_uart0: cdc_acm_uart0 {
+        compatible = "zephyr,cdc-acm-uart";
+    };
 };
 
 &i2c1 {

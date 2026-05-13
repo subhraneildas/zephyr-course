@@ -1,0 +1,10 @@
+{
+  "configurations": [
+    {
+      "name": "Zephyr",
+      "compileCommands": "C:/ncsfund/zephyr-course/build/compile_commands.json"
+      //"${workspaceFolder}/build/compile_commands.json" 
+    }
+  ],
+  "version": 4
+}
