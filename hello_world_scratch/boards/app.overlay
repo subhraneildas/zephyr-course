@@ -1,0 +1,18 @@
+/* ----practicing with aliases---------------
+
+/{
+    aliases{
+        my-red-led = &red_led;
+    };
+};
+
+*/
+//--------------------------Homework L4 task 1----------------------------------------------------------
+
+/{
+    aliases{
+        app-led = &led2; //alias app_led pointing to blue LED, i.e., 
+                        // &led2 GPIO0 pin 6 on the nano33 board
+    };
+};
+    
