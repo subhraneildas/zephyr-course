@@ -1,5 +1,7 @@
 {
     "nrf-connect.applications": [
         "${workspaceFolder}"
-    ]
+    ],
+    "cmake.sourceDirectory": "C:/ncsfund/zephyr-course/app",
+    //"cmake.sourceDirectory": "C:/ncsfund/zephyr-course/app"
 }

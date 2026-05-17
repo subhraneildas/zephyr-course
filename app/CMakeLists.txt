@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.20.0)
 list(APPEND BOARD_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
+#set(EXTRA_DTC_OVERLAY_FILE "${CMAKE_CURRENT_SOURCE_DIR}/boards/app.overlay")
 find_package(Zephyr REQUIRED)
 project(my_zephyr_app)
-
+#target_sources(app PRIVATE drivers/our_driver/our_driver.c)
+#zephyr_library_sources(our_driver.c)
 target_sources(app PRIVATE src/main.cpp)
+add_subdirectory(drivers/our_driver)

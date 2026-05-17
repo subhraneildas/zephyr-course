@@ -91,13 +91,25 @@
 
 #----------------------Homework L4 task 1------------------------------------------#
 
-menuconfig HEARTBEAT_LED
-    bool "Heartbeat LED"
+#menuconfig HEARTBEAT_LED
+#    bool "Heartbeat LED"
+#    default y
+#    if HEARTBEAT_LED
+#        config APP_HEARTBEAT_PERIOD_MS
+#            int "LED pulsing speed (ms)"
+#            default 500
+#            range 100 2000
+#    endif
+#source "Kconfig.zephyr"
+#-------------------Homework L6 task 1&2-------------------------------------------#
+menuconfig LED_DEVICE_DRIVER
+    bool "Device Driver LED"
     default y
-    if HEARTBEAT_LED
-        config APP_HEARTBEAT_PERIOD_MS
+    if LED_DEVICE_DRIVER
+        config SLEEP_TIME_MS
             int "LED pulsing speed (ms)"
-            default 500
-            range 100 2000
+            default 1000
+            range 200 3000
     endif
 source "Kconfig.zephyr"
+rsource "drivers/our_driver/Kconfig"

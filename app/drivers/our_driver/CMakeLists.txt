@@ -1,0 +1,5 @@
+if(CONFIG_OUR_DRIVER)
+    target_sources(app PRIVATE our_driver.c)
+    list(APPEND DTS_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
+endif()
+zephyr_library_sources(our_driver.c)
