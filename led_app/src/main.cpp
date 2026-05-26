@@ -3,7 +3,8 @@
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <zephyr/device.h>
-#include<zephyr/drivers/sensor.h>
+// #include<zephyr/drivers/sensor.h>   // replaced by custom driver API
+#include "l6driver.h"
 #define SLEEP_TIME_MS 1000
 LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 //namespace{
@@ -25,13 +26,25 @@ int main(void){
         }
         k_msleep(500);
         LOG_INF("LED driver is now ready!!\n");
-    struct sensor_value val={0};
+        
+
+    // struct sensor_value val={0};  // no longer needed — custom API has no sensor_value
+    uint32_t count = 0;
+
    // test();
     while (1) {
-        sensor_sample_fetch(driver);
+        // sensor_sample_fetch(driver);           // old: sensor API turned LED on
+        l6driver_on(driver);                      // new: custom API turns LED on
         k_msleep(SLEEP_TIME_MS);
-        sensor_channel_get(driver, SENSOR_CHAN_ALL, &val);
+
+        // sensor_channel_get(driver, SENSOR_CHAN_ALL, &val); // old: sensor API turned LED off
+        l6driver_off(driver);                     // new: custom API turns LED off
         k_msleep(SLEEP_TIME_MS);
+
+        // Read toggle_count from the driver's dynamic struct via custom API
+        l6driver_get_toggle_count(driver, &count);
+        LOG_INF("Total LED toggles so far: %u", count);
+        printk("Total LED toggles so far: %d", count);
         }
     return 0;
 }
