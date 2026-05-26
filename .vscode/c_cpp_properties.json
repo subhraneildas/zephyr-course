@@ -4,21 +4,22 @@
       "name": "Zephyr",
       "compilerPath": "C:/ncs/toolchains/fd21892d0f/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc.exe",
       "compileCommands":"C:/ncsfund/zephyr-course/build/compile_commands.json", 
-      "includePath": [
-                "C:/ncsfund/zephyr-course/build/zephyr/include/generated",
-                "C:/ncsfund/zephyr-course/build/zephyr/include/generated/zephyr",
-                "C:/ncs/v3.2.4/zephyr",
-                "C:/ncs/v3.2.4/zephyr/include",
-                "C:/ncs/v3.2.4/zephyr/include/zephyr",
-                "C:/ncs/v3.2.4/zephyr/include/zephyr/drivers",
-                "C:/ncs/v3.2.4/zephyr/drivers",
-                "C:/ncs/v3.2.4/modules/hal/nordic/nrfx",
-                "C:/ncs/v3.2.4/modules/hal/cmsis_6/CMSIS/Core/Include"],
-      "defines": [
-                "__ZEPHYR__=1",
-                "KERNEL",
-                "NRF52840_XXAA"],
-      "forcedInclude": ["C:/ncsfund/zephyr-course/build/zephyr/include/generated/zephyr/autoconf.h"]
+      // "includePath": [
+      //           "C:/ncsfund/zephyr-course/build/zephyr/include/generated",
+      //           "C:/ncsfund/zephyr-course/build/zephyr/include/generated/zephyr",
+      //           "C:/ncs/v3.2.4/zephyr",
+      //           "C:/ncs/v3.2.4/zephyr/include",
+      //           "C:/ncs/v3.2.4/zephyr/include/zephyr",
+      //           "C:/ncs/v3.2.4/zephyr/include/zephyr/drivers",
+      //           "C:/ncs/v3.2.4/zephyr/drivers",
+      //           "C:/ncs/v3.2.4/modules/hal/nordic/nrfx",
+      //           "C:/ncs/v3.2.4/modules/hal/cmsis_6/CMSIS/Core/Include"],
+      "includePath": [], 
+      // "defines": [
+      //           "__ZEPHYR__=1",
+      //           "KERNEL",
+      //          "NRF52840_XXAA"],
+      // "forcedInclude": ["C:/ncsfund/zephyr-course/build/zephyr/include/generated/zephyr/autoconf.h"]
     }
   ],
   "version": 4
