@@ -7,8 +7,6 @@
 #     #    list(APPEND DTS_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
 # endif()
 
-if(CONFIG_LED_DRIVER)
-    target_sources(app PRIVATE led_driver.c)
-    #list(APPEND DTS_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
+if(CONFIG_L6_DRIVER)
+    target_sources(app PRIVATE l6driver.c)
 endif()
-zephyr_library_sources(led_driver.c)

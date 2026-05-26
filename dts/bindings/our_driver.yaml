@@ -1,3 +1,0 @@
-description: Our simple GPIO driver
-compatible: "our, driver"
-include: base.yaml

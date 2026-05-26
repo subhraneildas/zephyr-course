@@ -4,7 +4,7 @@
 //#include<zephyr/device.h>
 #define DT_DRV_COMPAT my_l6driver
 
-LOG_MODULE_REGISTER(led_driver,LOG_LEVEL_INF); 
+LOG_MODULE_REGISTER(l6driver,LOG_LEVEL_INF); 
 
 struct led_driver_config{
     struct gpio_dt_spec led;
@@ -43,7 +43,7 @@ static int init(const struct device *dev){
     return 0;
 }
 
- #define DEV_INST(inst) static const struct led_driver_config led_driver_config_##inst = {.led = GPIO_DT_SPEC_INST_GET(inst,gpios),}; DEVICE_DT_INST_DEFINE(inst, init, NULL, NULL, &led_driver_config_##inst, POST_KERNEL, 80, &api_led);
+ #define DEV_INST(inst) static const struct led_driver_config led_driver_config_##inst = {.led = GPIO_DT_SPEC_INST_GET(inst,gpios),};  DEVICE_DT_INST_DEFINE(inst, init, NULL, NULL, &led_driver_config_##inst, POST_KERNEL, 80, &api_led);
  
  DT_INST_FOREACH_STATUS_OKAY(DEV_INST);
 
@@ -55,5 +55,4 @@ static int init(const struct device *dev){
 //                      POST_KERNEL,
 //                      80,
 //                      &api_led);
-
 

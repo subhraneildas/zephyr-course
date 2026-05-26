@@ -1,0 +1,9 @@
+description: LED driver GPIO implementation
+compatible: "my,l6driver"
+include: base.yaml
+properties:
+  gpios:
+    type: phandle-array
+    required: true
+    description: GPIO-controlled LED
+

@@ -1,5 +1,5 @@
-config LED_DRIVER
-    bool "led_driver"
+config L6_DRIVER
+    bool "l6_driver"
     default y
     select GPIO
     help

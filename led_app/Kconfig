@@ -1,12 +1,12 @@
 #-------------------Homework L6 task 1-------------------------------------------#
-menuconfig LED_DEVICE_BLINKSPEED
-    bool "LED Pulsing speed"
-    default y
-    if LED_DEVICE_BLINKSPEED
-       config SLEEP_TIME_MS
-            int "LED pulsing speed (ms)"
-            default 1000
-            range 200 3000
-    endif
+# menuconfig LED_DEVICE_BLINKSPEED
+#     bool "LED Pulsing speed"
+#     default y
+#     if LED_DEVICE_BLINKSPEED
+#        config SLEEP_TIME_MS
+#             int "LED pulsing speed (ms)"
+#             default 1000
+#             range 200 3000
+#     endif
 source "Kconfig.zephyr"
-rsource "drivers/led_driver/Kconfig"
+rsource "drivers/l6driver/Kconfig"
