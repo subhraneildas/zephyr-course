@@ -1,0 +1,6 @@
+config LED_DRIVER
+    bool "led_driver"
+    default y
+    select GPIO
+    help
+      Enables LED driver 

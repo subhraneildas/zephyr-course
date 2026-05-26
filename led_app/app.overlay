@@ -1,0 +1,22 @@
+//This is the device tree node for a simple led driver
+/ {
+    led_driver0: led_driver{
+        compatible = "my,l6driver";
+        status = "okay"; // other value as "disabled"
+        gpios = <&gpio0 6 GPIO_ACTIVE_LOW>; // blue led
+    };
+};
+
+/ {
+    chosen {
+        zephyr,console = &cdc_acm_uart0;
+        zephyr,shell-uart = &cdc_acm_uart0;
+    };
+};
+
+&zephyr_udc0 {
+    cdc_acm_uart0: cdc_acm_uart0 {
+        compatible = "zephyr,cdc-acm-uart";
+    };
+};
+
