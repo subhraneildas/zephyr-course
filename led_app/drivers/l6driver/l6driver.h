@@ -2,53 +2,50 @@
 #define L6DRIVER_H_
 
 #include <zephyr/device.h>
+#include <zephyr/drivers/sensor.h>   // needed for struct sensor_driver_api
 #include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/* ---------- Custom API vtable ---------- */
+// ---------- Custom API function pointer types ----------
 
-typedef int (*l6driver_on_t)(const struct device *dev);
-typedef int (*l6driver_off_t)(const struct device *dev);
-typedef int (*l6driver_get_toggle_count_t)(const struct device *dev,
-                                           uint32_t *count);
+typedef int      (*l6driver_set_blink_speed_t)(const struct device *dev,
+                                               uint32_t period_ms);
+typedef uint32_t (*l6driver_get_blink_speed_t)(const struct device *dev);
 
+/*---------- Combined API vtable ----------
+ *
+ * struct sensor_driver_api MUST be the first member so that the sensor
+ * subsystem's internal cast  (sensor_driver_api *)dev->api  still lands
+ * on the right function pointers at offset 0.
+ * Our custom pointers sit after it and are reachable by
+ * casting dev->api to struct l6driver_api.
+ */
 struct l6driver_api {
-    l6driver_on_t               on;
-    l6driver_off_t              off;
-    l6driver_get_toggle_count_t get_toggle_count;
+    struct sensor_driver_api sensor;        /* placed first since sensor subsystem looks here first while building*/
+    l6driver_set_blink_speed_t set_blink_speed;
+    l6driver_get_blink_speed_t get_blink_speed;
 };
 
-/* ---------- Inline wrappers (called from application) ---------- */
+//---------- Inline wrappers (to be called from application main) ---------- 
 
-/** Turn the LED on and increment the toggle counter. */
-static inline int l6driver_on(const struct device *dev)
+//Sets blinking speed of LED and stored in the driver's 
+//dynamic data struct at runtime.
+static inline int l6driver_set_blink_speed(const struct device *dev,
+                                           uint32_t period_ms)
 {
     const struct l6driver_api *api = (const struct l6driver_api *)dev->api;
-    return api->on(dev);
+    return api->set_blink_speed(dev, period_ms);
 }
 
-/** Turn the LED off and increment the toggle counter. */
-static inline int l6driver_off(const struct device *dev)
+//Reads and returns the current blink period from
+// the driver's dynamic data struct, ie., const struct device *dev
+static inline uint32_t l6driver_get_blink_speed(const struct device *dev)
 {
     const struct l6driver_api *api = (const struct l6driver_api *)dev->api;
-    return api->off(dev);
-}
-
-/**
- * Read how many times the LED has been toggled since boot.
- *
- * @param dev   LED driver device handle.
- * @param count Output: current toggle count stored in the dynamic struct.
- * @return 0 on success.
- */
-static inline int l6driver_get_toggle_count(const struct device *dev,
-                                            uint32_t *count)
-{
-    const struct l6driver_api *api = (const struct l6driver_api *)dev->api;
-    return api->get_toggle_count(dev, count);
+    return api->get_blink_speed(dev);
 }
 
 #ifdef __cplusplus
